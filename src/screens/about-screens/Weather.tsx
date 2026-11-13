@@ -141,10 +141,10 @@ const searchCitiesFromApi = async (query: string) => {
     
     
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-6 max-w-4xl mx-auto text-foreground">
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-1 p-6">
-            <label className="text-sm font-medium text-gray-700">City:</label>
+            <label className="text-sm font-medium text-muted-foreground">City:</label>
             <select
               value={selectedCity.name}
               onChange={(e) => {
@@ -153,7 +153,7 @@ const searchCitiesFromApi = async (query: string) => {
                     setSelectedCity(found);
                     setCityInput(found.name)}
               }}
-              className="border border-slate-300 py-1.5 px-3 pr-8 rounded focus:outline-none focus:border-slate-500 bg-white"
+              className="border border-border py-1.5 px-3 pr-8 rounded focus:outline-none focus:border-ring bg-background text-foreground"
               >
               {cities.map((city) => (
                 <option key={city.name} value={city.name}>
@@ -164,11 +164,11 @@ const searchCitiesFromApi = async (query: string) => {
           </div>
         
           <div className="flex items-center gap-1">
-            <label className="text-sm font-medium text-gray-700">Unit:</label>
+            <label className="text-sm font-medium text-muted-foreground">Unit:</label>
             <select
               value={unit}
               onChange={(e) => setUnit(e.target.value)}
-              className="border border-slate-300 py-1.5 px-3 pr-8 rounded focus:outline-none focus:border-slate-500 bg-white"
+              className="border border-border py-1.5 px-3 pr-8 rounded focus:outline-none focus:border-ring bg-background text-foreground "
             >
               <option value="celsius">°C</option>
               <option value="fahrenheit">°F</option>
@@ -176,11 +176,11 @@ const searchCitiesFromApi = async (query: string) => {
           </div>
 
           <div className="flex items-center gap-1">
-            <label className="text-sm font-medium text-gray-700">Days:</label>
+            <label className="text-sm font-medium text-muted-foreground">Days:</label>
             <select
                 value={forecastDays}
                 onChange={(e) => setForecastDays(Number(e.target.value))}
-                className=" border border-slate-300 py-1.5 px-3 pr-8  rounded  focus:outline-none focus:border-slate-500 bg-white"
+                className=" border border-border py-1.5 px-3 pr-8 rounded focus:outline-none focus:border-ring bg-background text-foreground"
                 >
                 <option value={3}>3 day</option>
                 <option value={7}>7 day</option>
@@ -189,7 +189,7 @@ const searchCitiesFromApi = async (query: string) => {
         </div>
         
         <div className="flex items-center gap-1">
-  <label className="text-sm font-medium text-gray-700">Search:</label>
+  <label className="text-sm font-medium text-muted-foreground">Search:</label>
   <div className="relative">
             <input
               type="text"
@@ -200,22 +200,22 @@ const searchCitiesFromApi = async (query: string) => {
                 searchCitiesFromApi(value);
               }}
               placeholder="Unesi novi grad..."
-              className="border border-slate-300 py-1.5 px-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-sm shadow-sm w-48"
+              className="border border-border py-1.5 px-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring bg-background text-foreground text-sm shadow-sm w-48"
             />
             
-            <span className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-xs">
+            <span className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground text-xs">
               ▼
             </span>
 
             {searchedCities.length > 0 && (
-              <ul className="absolute left-0 right-0 mt-1 max-h-48 overflow-y-auto bg-white border border-slate-300 rounded-lg shadow-md z-50 text-sm divide-y divide-slate-100">
+              <ul className="absolute left-0 right-0 mt-1 max-h-48 overflow-y-auto bg-card border border-border rounded-lg shadow-md z-50 text-sm divide-y divide-border">
                 {searchedCities.map((city) => (
                   <li
                     key={city.id || city.name}
                     onClick={() => {
                       setCityInput(city.name);
                     }}
-                    className="px-3 py-2 text-slate-700 hover:bg-slate-100 cursor-pointer transition-colors"
+                    className="px-3 py-2 text-card-foreground hover:bg-muted cursor-pointer transition-colors"
                   >
                     {city.name}
                   </li>
@@ -235,13 +235,13 @@ const searchCitiesFromApi = async (query: string) => {
       {loading ? (
         <WeatherTableSkeleton rowsCount={forecastDays} />
       ) : weather ? (
-        <div className="overflow-x-auto border rounded-lg shadow-sm transition-opacity duration-700 ease-in-out opacity-100">
+        <div className="overflow-x-auto border border-border rounded-lg shadow-sm transition-opacity duration-700 ease-in-out opacity-100 mt-6 bg-card">
           <table className="w-full text-left border-collapse">
-            <thead>
+            <thead className="bg-muted/50 border-b border-border">
               <tr className="bg-gray-100 border-b">
-                <th className="p-3 text-center">Date</th>
-                <th className="p-3 text-center">Maximum temperature ({weather.daily_units.temperature_2m_max})</th>
-                <th className="p-3 text-center">Minimum temperature ({weather.daily_units.temperature_2m_min})</th>
+                <th className="p-3 text-center text-black">Date</th>
+                <th className="p-3 text-center text-black">Maximum temperature ({weather.daily_units.temperature_2m_max})</th>
+                <th className="p-3 text-center text-black">Minimum temperature ({weather.daily_units.temperature_2m_min})</th>
               </tr>
             </thead>
             <tbody>

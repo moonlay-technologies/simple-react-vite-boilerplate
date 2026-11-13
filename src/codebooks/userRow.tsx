@@ -21,8 +21,8 @@ const ROLES = ['Frontend Developer', 'Backend Developer', 'UI/UX Designer', 'Ful
  function UserRow({user, onDelete, onUpdateRole, editingId, tempName, setTempName, handleSave, handleStartEdit }: UserRowProps) {
 
   return (
-    <tr className="hover:bg-slate-50">
-      <td className="border border-slate-300 p-2 text-sm text-slate-700">
+    <tr className="border-b border-border hover:bg-muted/30 transition-colors">
+      <td className="border border-border p-2 text-sm text-foreground">
         {editingId === user.id ? (
           <input
             type="text"
@@ -32,19 +32,19 @@ const ROLES = ['Frontend Developer', 'Backend Developer', 'UI/UX Designer', 'Ful
             onKeyDown={(e) => {
               if (e.key === 'Enter') handleSave(user.id);}}
               autoFocus
-            className="border border-slate-300 p-1 rounded w-full"
+            className="border border-border p-1 rounded w-full bg-background text-foreground focus:outline-none focus:border-ring"
           />
         ) : (
-          <span onClick={() => handleStartEdit(user)} className="cursor-pointer">
+          <span onClick={() => handleStartEdit(user)} className="cursor-pointer hover:text-primary transition-colors">
             {user.name}
           </span>
         )}
       </td>
-      <td className="border border-slate-300 p-2 text-sm text-slate-700">
+      <td className="border border-border p-2 text-sm text-foreground">
         <select
           value={user.role}
           onChange={(e) => onUpdateRole(user.id, e.target.value)}
-          className="border border-slate-300 p-2 rounded"
+          className="border border-border p-2 rounded bg-background text-foreground focus:outline-none focus:border-ring text-center"
         >
           <option value="">Select Role</option>
 
@@ -55,14 +55,14 @@ const ROLES = ['Frontend Developer', 'Backend Developer', 'UI/UX Designer', 'Ful
           ))}
         </select>
       </td>
-      <td className="border border-slate-300 p-2 text-sm text-slate-700">{user.city}</td>
-      <td className="border border-slate-300 p-2 text-center">
+      <td className="border border-border p-2 text-sm text-foreground">{user.city}</td>
+      <td className="border border-border p-2 text-center">
         <button
           onClick={() => {
             onDelete(user.id);
             toast.success('User deleted successfully!');
           }}
-          className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs font-semibold transition"
+          className=" text-centre bg-destructive text-destructive-foreground hover:opacity-90 px-3 py-1 rounded text-xs font-semibold transition cursor-pointer"
         >
           Delete
         </button>

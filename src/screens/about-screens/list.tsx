@@ -66,9 +66,9 @@ import UserForm from "@/codebooks/userForm";
   };
   
   return ( 
-    <div className="min-h-screen max-w-6xl mx-auto bg-slate-50 px-4 sm:px-8 md:py-8 md:pr-8">   
-      <h2 className="text-xl font-bold mb-4 text-slate-800">List of Users (JSON table)</h2>
-      <table className="w-full border-collapse border border-slate-300 text-left">
+    <div className="min-h-screen max-w-6xl mx-auto bg-background text-foreground px-4 sm:px-8 md:py-8 md:pr-8 transition-colors">   
+      <h2 className="text-xl font-bold mb-4 text-foreground">List of Users (JSON table)</h2>
+      <table className="w-full border-collapse border border-border text-left bg-card rounded-lg shadow-sm">
         <TableHeader />
         <tbody>
           {users.length > 0 ? (
