@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import UserRow, { User } from "@/codebooks/userRow";
 import TableHeader from "@/components/tableHeader";
-import UserForm from "@/codebooks/UserForm";
+import UserForm from "@/codebooks/userForm";
   const initialData: User[] = [
     { id: 1, name: 'Anja Milijasevic', role: 'Frontend Developer', city: 'Belgrade' },
     { id: 2, name: 'Marko Markovic', role: 'Backend Developer', city: 'Novi Sad' },
@@ -33,6 +33,9 @@ import UserForm from "@/codebooks/UserForm";
     localStorage.setItem('users', JSON.stringify(updatedUsers));
     setShowForm(false);
   };
+  const handleCancel = () =>{
+      setShowForm(false);
+    };
   const handleStartEdit= (user: {id: number, name: string}) => { 
     setEditingId(user.id);
     setTempName(user.name);
@@ -62,7 +65,6 @@ import UserForm from "@/codebooks/UserForm";
     localStorage.setItem('users', JSON.stringify(updatedUsers));
   };
   
-
   return ( 
     <div className="min-h-screen max-w-6xl mx-auto bg-slate-50 px-4 sm:px-8 md:py-8 md:pr-8">   
       <h2 className="text-xl font-bold mb-4 text-slate-800">List of Users (JSON table)</h2>
@@ -86,14 +88,14 @@ import UserForm from "@/codebooks/UserForm";
         <button onClick={() => setShowForm(!showForm)} className="text-blue-500 hover:underline">
           {showForm ? 'Hide Form' : 'Add New User'}
         </button>
+        
         {showForm && (
           <div className="mt-2">
-            <UserForm onAddUser={handleAddUser} />
+            <UserForm onAddUser={handleAddUser} onCancel={handleCancel} />
           </div>
         )}
         </div>
     </div>    
   );
 }
-
 export default UserTable;

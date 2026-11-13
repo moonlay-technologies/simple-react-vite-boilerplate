@@ -1,14 +1,10 @@
-//import { memo } from "react";
 import "./index.css";
 import { useEffect } from "react";
-// import axios from "axios";h
-//import { PostApi } from "./services/resources";
 import { Link, Route, Routes } from "react-router";
 import { toast } from "sonner";
 import AboutScreens from "./screens/about-screens";
-//import HomeScreens from "./screens/about-screens/home";
-import ListScreens from "./screens/about-screens/list";
-import TestScreens from "./screens/test";
+import ListScreens from "./screens/about-screens/List";
+import WeatherScreens from "./screens/about-screens/Weather";
 
 function App() {
   const fetchData = async () => {
@@ -46,7 +42,7 @@ function App() {
         <Link to={"/home"} className="text-blue-600 hover:underline active:text-black-800">Home</Link>
         <Link to={"/about"} className="text-blue-600 hover:underline hover:text-blue-800">Increment and Decrement</Link>
         <Link to={"/list"} className="text-blue-600 hover:underline hover:text-blue-800">List of Users</Link>
-        <Link to={"/test"} className="text-blue-600 hover:underline hover:text-blue-800">Test</Link>
+        <Link to={"/weather"} className="text-blue-600 hover:underline hover:text-blue-800">Weather forecast</Link>
       </nav>
       <main className="flex-1 pt-20 md:ml-64 md:pt-0">
         <Routes>
@@ -57,7 +53,7 @@ function App() {
           } />
           <Route path="/about" element={<AboutScreens />} />
           <Route path="/list" element={<ListScreens />} />
-          <Route path="/test" element={<TestScreens />} />
+          <Route path="/weather" element={<WeatherScreens />} />
         </Routes>
       </main>
     </div>

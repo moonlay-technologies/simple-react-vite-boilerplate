@@ -1,5 +1,3 @@
-    //import { useState } from 'react';
-
 interface RoleSelectProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -16,14 +14,17 @@ const ROLES = [
   { value: '6', label: 'Project Director' }
 ];
 
-export default function RoleSelect({ value, onChange }: RoleSelectProps) {
-
+export default function RoleSelect({ value, onChange, hasError }: RoleSelectProps) {
     return (
     <select
         value={value}
         onChange={onChange}
-        className="border border-slate-300 p-2 rounded"
-    >
+        className={`border py-2 pl-2 rounded roundeds transition-colors  focus:outline-none ${
+            hasError 
+                ? 'border-red-500 bg-red-50' 
+                : 'border-slate-300 focus:border-slate-500'
+        }`}
+        >
         {ROLES.map((role) => (
             <option key={role.value} value={role.label}>
                 {role.label}
